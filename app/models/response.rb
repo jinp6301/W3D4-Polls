@@ -1,8 +1,6 @@
 class Response < ActiveRecord::Base
   attr_accessible :choice_id, :user_id
 
-  attr_reader :choice_id, :user_id
-
   belongs_to :user
   belongs_to :choice
   has_one :question, through: :choice

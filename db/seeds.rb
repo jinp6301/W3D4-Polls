@@ -7,7 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-users = User.create([{name: "Willem van Daalen"}, {name: "Jin Park"}])
+users = User.create([{name: "Willem van Daalen"},
+  {name: "Jin Park"},
+  {name: "Jonathan"},
+  {name: "Samwise"}])
 polls = Poll.create([
   {title: "CS Stuff", user_id: 1},
   {title: "Other Sheet", user_id: 1},
@@ -27,5 +30,10 @@ choices = Choice.create([
   {choice: 'Picasso', question_id: 3},
   {choice: 'Pizza', question_id: 4},
   {choice: 'Burgers', question_id: 4},
-  {choice: 'None of the above', question_id: 4},
+  {choice: 'None of the above', question_id: 4}
+])
+responses = Response.create([
+  {choice_id: 1, user_id: 3},
+  {choice_id: 2, user_id: 2},
+  {choice_id: 2, user_id: 4}
 ])

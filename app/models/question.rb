@@ -13,4 +13,24 @@ class Question < ActiveRecord::Base
     greater_than: 0
   }
 
+  def results
+    choices.joins(:responses).group("choices.choice").count
+  end
+
+  def edit_body(body)
+    @body = body
+    save
+  end
+
+  def add_choices
+    choice = nil
+    while choice != "--quit"
+      puts "Enter choice for question (--quit when finished)>"
+      choice = gets.chomp
+      unless choice.empty? || choice == "--quit"
+        Choice.create({choice: choice, question_id: @id})
+      end
+    end
+  end
+
 end

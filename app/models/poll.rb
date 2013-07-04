@@ -10,4 +10,10 @@ class Poll < ActiveRecord::Base
     only_integer: true,
     greater_than: 0
   }
+
+  def create_question(body)
+    Question.create({body: body, poll_id: @current_poll.id}).add_choices
+  end
+
+
 end

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :name, uniqueness: true
-  validates :name, format: { with: /\A[a-zA-Z]+\z/,
-    message: "only allows letters" }
+  # validates :name, format: { with: /\A[a-zA-Z]+\z/,
+  #   message: "only allows letters" }
 
 end

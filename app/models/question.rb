@@ -18,7 +18,7 @@ class Question < ActiveRecord::Base
   end
 
   def edit_body(body)
-    @body = body
+    self.body = body
     save
   end
 
@@ -28,7 +28,7 @@ class Question < ActiveRecord::Base
       puts "Enter choice for question (--quit when finished)>"
       choice = gets.chomp
       unless choice.empty? || choice == "--quit"
-        Choice.create({choice: choice, question_id: @id})
+        Choice.create({choice: choice, question_id: self.id})
       end
     end
   end

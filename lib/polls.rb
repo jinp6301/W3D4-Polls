@@ -1,9 +1,12 @@
 class PollsApp
 
-  attr_reader :current_user, :current_poll
 
   def initialize(name = nil)
-    @current_user = PollsApp.login(name)
+    @current_user_id = PollsApp.login(name).id
+  end
+
+  def current_user
+    User.find(@current_user_id)
   end
 
   def self.login(name = nil)
@@ -15,11 +18,11 @@ class PollsApp
   end
 
   def new_poll(title)
-    Poll.create(title: title, user_id: @current_user.id)
+    Poll.create(title: title, user_id: @current_user_id)
   end
 
   def choose_poll
-    polls = Poll.where("user_id != ?", @current_user.id)
+    polls = Poll.where("user_id != ?", @current_user_id)
     polls.each_with_index do |poll, i|
       puts "[#{i+1}] #{poll.title}"
     end
@@ -45,7 +48,7 @@ class PollsApp
         choice_index = gets.chomp.to_i - 1
       end
       Response.create(choice_id: question.choices[choice_index].id,
-        user_id: @current_user.id)
+        user_id: @current_user_id)
     end
   end
 

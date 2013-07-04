@@ -12,7 +12,8 @@ class Poll < ActiveRecord::Base
   }
 
   def create_question(body)
-    Question.create({body: body, poll_id: @current_poll.id}).add_choices
+    new_question = Question.create({body: body, poll_id: self.id})
+    new_question.add_choices
   end
 
 

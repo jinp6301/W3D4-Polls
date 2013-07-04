@@ -10,18 +10,18 @@ class Response < ActiveRecord::Base
     only_integer: true,
     greater_than: 0
   }
-  validate :one_response_per_question_per_user,
-    :author_doesnt_answer_own_question
+  # validate :one_response_per_question_per_user,
+  #   :author_doesnt_answer_own_question
 
   # Validations
   def one_response_per_question_per_user
-    if self.question.responses.include?(Response.where(user_id: @user_id))
+    if self.question.responses.include?(Response.where(user_id: self.user_id))
       errors.add(:user_id, "You have already answered this question")
     end
   end
 
   def author_doesnt_answer_own_question
-    if self.question.author.id == @user_id
+    if self.question.author.id == self.user_id
       errors.add(:choice_id, "You cannot answer your own question.")
     end
   end

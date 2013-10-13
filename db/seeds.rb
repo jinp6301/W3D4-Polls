@@ -12,8 +12,8 @@ users = User.create([{name: "Willem van Daalen"},
   {name: "Jonathan"},
   {name: "Samwise"}])
 polls = Poll.create([
-  {title: "CS Stuff", user_id: 1},
-  {title: "Other Sheet", user_id: 1},
+  {title: "CS Stuff", user_id: 1, restricted: true},
+  {title: "Other Sheet", user_id: 1, restricted: true},
   {title: "Way better poll than those two.", user_id: 2}])
 questions = Question.create([
   {poll_id: 1,body: "Favorite programming language"},
@@ -36,4 +36,18 @@ responses = Response.create([
   {choice_id: 1, user_id: 3},
   {choice_id: 2, user_id: 2},
   {choice_id: 2, user_id: 4}
+])
+teams = Team.create([
+  {name: 'green'},
+  {name: 'red'}
+])
+team_members = TeamMember.create([
+  {user_id: 1, team_id: 1},
+  {user_id: 1, team_id: 2},
+  {user_id: 2, team_id: 1}
+])
+restrictions = Restriction.create([
+  {poll_id: 1, team_id: 1},
+  {poll_id: 1, team_id: 2},
+  {poll_id: 2, team_id: 2}
 ])

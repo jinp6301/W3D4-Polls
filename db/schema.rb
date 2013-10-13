@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704143054) do
+ActiveRecord::Schema.define(:version => 20130704215304) do
 
   create_table "choices", :force => true do |t|
     t.integer  "question_id"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(:version => 20130704143054) do
   create_table "polls", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "restricted", :default => false
   end
 
   create_table "questions", :force => true do |t|
@@ -37,6 +38,26 @@ ActiveRecord::Schema.define(:version => 20130704143054) do
   create_table "responses", :force => true do |t|
     t.integer  "choice_id"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "restrictions", :force => true do |t|
+    t.integer  "poll_id"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "team_members", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
